@@ -1,0 +1,1085 @@
+{
+  "Uuid": "9bebd77c-89df-47ae-9612-906cf2a32d9a",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Crear parametros por ejemplar",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "C:\\Users\\JMeruvia\\Downloads\\PARAMETROS G5.xlsx",
+      "InputValue": "C:\\Users\\JMeruvia\\Downloads\\PARAMETROS G5.xlsx",
+      "NodeType": "ExtensionNode",
+      "Id": "9014cbbf961c4f89a0902a0510eeacd2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "78aa9c000faf4597b66b6b3645c9ceb3",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite seleccionar un archivo del sistema para obtener su nombre de archivo"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "04657f212d9f4285b610e006fc8dbdfb",
+      "Inputs": [
+        {
+          "Id": "8b49c0813c2642e0bb52da67c5d39693",
+          "Name": "path",
+          "Description": "Ruta del archivo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b253e32802cd4a20830889cde5c6b06c",
+          "Name": "file",
+          "Description": "Objeto de archivo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Crea un objeto de archivo a partir de una ruta"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSOffice.Data.ImportExcel@var,string,bool,bool",
+      "Id": "5b74eb33d918458ca0cb5c192003650c",
+      "Inputs": [
+        {
+          "Id": "37a14c769b644f4aa4136331d58d2436",
+          "Name": "file",
+          "Description": "Archivo que representa la hoja de cálculo de Microsoft Excel.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1405afb3cb7c4ce69e08c0889fd0d719",
+          "Name": "sheetName",
+          "Description": "Nombre de la hoja de cálculo que contiene los datos.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b0d1c399096458894977c381b558c49",
+          "Name": "readAsStrings",
+          "Description": "Conmutador para alternar entre la lectura del archivo Excel como cadenas.\n\nbool\nValor por defecto : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ccdaf0124014477992036cc69bcfce9e",
+          "Name": "showExcel",
+          "Description": "Conmutador para alternar entre la visualización y la ocultación de la ventana principal de Excel.\n\nbool\nValor por defecto : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "61d37b9756b44a2ba95d534d2970564c",
+          "Name": "data",
+          "Description": "Filas de datos de la hoja de cálculo de Excel.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Leer datos de una hoja de cálculo de Microsoft Excel. Los datos se leen por fila y se devuelven en una serie de listas por fila Las filas y columnas se indexan a partir de cero; por ejemplo, el valor de la celda A1 aparecerá en la lista de datos como [0,0]. Este nodo requiere que Microsoft Excel esté instalado.\n\nData.ImportExcel (file: var, sheetName: string, readAsStrings: bool = false, showExcel: bool = true): var[][]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"TEXTOS\";",
+      "Id": "c80c344fe4a2495d81e763f04ebbf469",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "054916dad98b4dd388472d5ee6776a45",
+          "Name": "",
+          "Description": "Valor de la expresión en la línea 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite creación directa de código de DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Transpose@var[]..[]",
+      "Id": "00ec3bf3f9ec4a609fd890bd2ed4d2e6",
+      "Inputs": [
+        {
+          "Id": "9d9a3196593143629dbb0c0d445cccf9",
+          "Name": "lists",
+          "Description": "Una lista de listas a las que aplicar la transposición.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3780ae5d0edc4c85a5b2801b543fa689",
+          "Name": "lists",
+          "Description": "Una lista de listas a las que se ha aplicado la transposición.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Intercambia filas y columnas en una lista de listas. Si hay varias filas que son más cortas que otras, se insertan valores nulos como marcadores de posición en la matriz resultante, para que sea siempre rectangular.\n\nList.Transpose (lists: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "X[0];",
+      "Id": "2b802fc9c3e143d7be2e7ccea9e025bb",
+      "Inputs": [
+        {
+          "Id": "df68da21d6ed43cc95b87076b49ef56b",
+          "Name": "X",
+          "Description": "X",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "36b640c4606341df88c6a79da033acfd",
+          "Name": "",
+          "Description": "Valor de la expresión en la línea 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite creación directa de código de DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Parameter.CreateSharedParameterForAllCategories@string,string,string,string,bool",
+      "Id": "26516fd55a894061971422f9d25366a3",
+      "Inputs": [
+        {
+          "Id": "b6b6af0cc49b41cda079d5621c25a3a9",
+          "Name": "parameterName",
+          "Description": "Nombre\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f5ee2c6628274f768a26f14c97d0b9e8",
+          "Name": "groupName",
+          "Description": "Grupo del parámetro para parámetros compartidos\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "42be669d66b8425e8571d393ab590dd4",
+          "Name": "type",
+          "Description": "Tipo de parámetro\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "03f148d4ae074be9a7e1f3c21a559288",
+          "Name": "group",
+          "Description": "Grupo de parámetros\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "46481021234046768368dfaf89f94f65",
+          "Name": "instance",
+          "Description": "Es parámetro de ejemplar; de lo contrario, parámetro de tipo.\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4e1ba122d4414bc5a02caac3ba31a848",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Crear un nuevo parámetro compartido en el documento actual de Revit para todas las categorías aplicables\n\nParameter.CreateSharedParameterForAllCategories (parameterName: string, groupName: string, type: string, group: string, instance: bool): void"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"PARAMETROS METRADOS\";",
+      "Id": "d7d8d8eb726f428e883dceacd65e809b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2627b778909f445cbe0923c25385883c",
+          "Name": "",
+          "Description": "Valor de la expresión en la línea 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite creación directa de código de DesignScript"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ParameterType, DSRevitNodesUI",
+      "SelectedIndex": 126,
+      "SelectedString": "Text",
+      "NodeType": "ExtensionNode",
+      "Id": "0c508539d0e44d36b89c12b358c28952",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0c3d667257424178af12aa617790f173",
+          "Name": "Parameter Type",
+          "Description": "Parameter Type seleccionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selecciona un tipo de parámetro."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.BuiltInParameterGroup, DSRevitNodesUI",
+      "SelectedIndex": 26,
+      "SelectedString": "PG_DATA",
+      "NodeType": "ExtensionNode",
+      "Id": "9c37a7770f074e03b567590b91028da3",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e79e18e76b064dd7971ae721dd12ce62",
+          "Name": "BuiltIn Parameter Group",
+          "Description": "BuiltIn Parameter Group seleccionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selecciona un grupo de parámetros internos."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "77d6cbc421584da19793e61356140d92",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2e858f35d71146dfb270dd56ff119236",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selección entre True y False"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Parameter.CreateSharedParameterForAllCategories@string,string,string,string,bool",
+      "Id": "880ac9f6de0940f6864e1d15cc1cfbc5",
+      "Inputs": [
+        {
+          "Id": "d78c91f7a5584995b5af814b206be43e",
+          "Name": "parameterName",
+          "Description": "Nombre\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9bfcf3f83bcb44f98e37b6a1bce54b69",
+          "Name": "groupName",
+          "Description": "Grupo del parámetro para parámetros compartidos\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "995a794612b94f7f9645ea8b77a0e99f",
+          "Name": "type",
+          "Description": "Tipo de parámetro\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b178ffec3d9e492aa9b8bdfaee121d65",
+          "Name": "group",
+          "Description": "Grupo de parámetros\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "76028f71e42e40cc86d23f73e331c778",
+          "Name": "instance",
+          "Description": "Es parámetro de ejemplar; de lo contrario, parámetro de tipo.\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ea8fbc107bef4042a120269bf4e5d4e7",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Crear un nuevo parámetro compartido en el documento actual de Revit para todas las categorías aplicables\n\nParameter.CreateSharedParameterForAllCategories (parameterName: string, groupName: string, type: string, group: string, instance: bool): void"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.BuiltInParameterGroup, DSRevitNodesUI",
+      "SelectedIndex": 106,
+      "SelectedString": "PG_TEXT",
+      "NodeType": "ExtensionNode",
+      "Id": "74ac5aa0358a42e5a5a08bbeca95cadf",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "188499fc93574d8cb70159a3edd3eb0e",
+          "Name": "BuiltIn Parameter Group",
+          "Description": "BuiltIn Parameter Group seleccionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selecciona un grupo de parámetros internos."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"PARAMETROS METRADOS\";",
+      "Id": "26b1fac71d9c49bbafda4d0831ba6280",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "200efc98a6324d6d9069acb0a9edb94b",
+          "Name": "",
+          "Description": "Valor de la expresión en la línea 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite creación directa de código de DesignScript"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ParameterType, DSRevitNodesUI",
+      "SelectedIndex": 126,
+      "SelectedString": "Text",
+      "NodeType": "ExtensionNode",
+      "Id": "e7bdd28641bc43d7a2e976de0f412d3c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1705969459ca48448de165c99e9e93bb",
+          "Name": "Parameter Type",
+          "Description": "Parameter Type seleccionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selecciona un tipo de parámetro."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "30f51686d4b64807b0f38a8c8d1d2f90",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bdbfcf861a4742a49d6481635a92b394",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selección entre True y False"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "X[0];",
+      "Id": "688a292f4cd34e86918209e3c1d3c574",
+      "Inputs": [
+        {
+          "Id": "1cfaef06d2724a94a2c1550c2103779d",
+          "Name": "X",
+          "Description": "X",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1e55dafc058d4555813847ab068f00d2",
+          "Name": "",
+          "Description": "Valor de la expresión en la línea 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite creación directa de código de DesignScript"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Transpose@var[]..[]",
+      "Id": "e4066e3bc99d4f1483d69df37d6bc7fa",
+      "Inputs": [
+        {
+          "Id": "57ebf568b8b44e548c4299c959641670",
+          "Name": "lists",
+          "Description": "Una lista de listas a las que aplicar la transposición.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "831f7c14b35d4d80bb9a3fa233868832",
+          "Name": "lists",
+          "Description": "Una lista de listas a las que se ha aplicado la transposición.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Intercambia filas y columnas en una lista de listas. Si hay varias filas que son más cortas que otras, se insertan valores nulos como marcadores de posición en la matriz resultante, para que sea siempre rectangular.\n\nList.Transpose (lists: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSOffice.Data.ImportExcel@var,string,bool,bool",
+      "Id": "ccb169ec40e34132a83010f391b0d268",
+      "Inputs": [
+        {
+          "Id": "f173751b416444ccb5908568780311df",
+          "Name": "file",
+          "Description": "Archivo que representa la hoja de cálculo de Microsoft Excel.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d13d0e8d1aec425ea7a9d13c4af04a15",
+          "Name": "sheetName",
+          "Description": "Nombre de la hoja de cálculo que contiene los datos.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "80f2d7ea60b94989a63c313d0cbba1c8",
+          "Name": "readAsStrings",
+          "Description": "Conmutador para alternar entre la lectura del archivo Excel como cadenas.\n\nbool\nValor por defecto : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5cebe306a8a942df8c054ad2b10ad462",
+          "Name": "showExcel",
+          "Description": "Conmutador para alternar entre la visualización y la ocultación de la ventana principal de Excel.\n\nbool\nValor por defecto : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ef92ca3b06d84426948a6cac40d06d36",
+          "Name": "data",
+          "Description": "Filas de datos de la hoja de cálculo de Excel.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Leer datos de una hoja de cálculo de Microsoft Excel. Los datos se leen por fila y se devuelven en una serie de listas por fila Las filas y columnas se indexan a partir de cero; por ejemplo, el valor de la celda A1 aparecerá en la lista de datos como [0,0]. Este nodo requiere que Microsoft Excel esté instalado.\n\nData.ImportExcel (file: var, sheetName: string, readAsStrings: bool = false, showExcel: bool = true): var[][]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"FACTORES\";",
+      "Id": "c28a098d7e54432985721b3eb334e573",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cdea0600fc71445892d2bfd2d7a51b88",
+          "Name": "",
+          "Description": "Valor de la expresión en la línea 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite creación directa de código de DesignScript"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "78aa9c000faf4597b66b6b3645c9ceb3",
+      "End": "8b49c0813c2642e0bb52da67c5d39693",
+      "Id": "6290b88a882c4bca8b8b256e3891b0f8"
+    },
+    {
+      "Start": "b253e32802cd4a20830889cde5c6b06c",
+      "End": "37a14c769b644f4aa4136331d58d2436",
+      "Id": "4eb0f7324195435eb8adc012edab79a3"
+    },
+    {
+      "Start": "b253e32802cd4a20830889cde5c6b06c",
+      "End": "f173751b416444ccb5908568780311df",
+      "Id": "fd47455a4a2b49daa447f2d824643bc9"
+    },
+    {
+      "Start": "61d37b9756b44a2ba95d534d2970564c",
+      "End": "9d9a3196593143629dbb0c0d445cccf9",
+      "Id": "87eb912e0e284bb4aed8d6a7f906ae10"
+    },
+    {
+      "Start": "054916dad98b4dd388472d5ee6776a45",
+      "End": "1405afb3cb7c4ce69e08c0889fd0d719",
+      "Id": "139cc780c39f4884a35eea269cbabc84"
+    },
+    {
+      "Start": "3780ae5d0edc4c85a5b2801b543fa689",
+      "End": "df68da21d6ed43cc95b87076b49ef56b",
+      "Id": "59636aaa5fdc4446a8ed73e35ca5e03e"
+    },
+    {
+      "Start": "36b640c4606341df88c6a79da033acfd",
+      "End": "b6b6af0cc49b41cda079d5621c25a3a9",
+      "Id": "fc2a8e3296f941da878da7852fa7fa82"
+    },
+    {
+      "Start": "2627b778909f445cbe0923c25385883c",
+      "End": "f5ee2c6628274f768a26f14c97d0b9e8",
+      "Id": "7f42f50c18b7459eaa76e17ea64f3f42"
+    },
+    {
+      "Start": "0c3d667257424178af12aa617790f173",
+      "End": "42be669d66b8425e8571d393ab590dd4",
+      "Id": "c3dbefce24f947c79d110a6a849abc73"
+    },
+    {
+      "Start": "e79e18e76b064dd7971ae721dd12ce62",
+      "End": "03f148d4ae074be9a7e1f3c21a559288",
+      "Id": "8c4c77436ec54a64a75fdfcdc3c906a1"
+    },
+    {
+      "Start": "2e858f35d71146dfb270dd56ff119236",
+      "End": "46481021234046768368dfaf89f94f65",
+      "Id": "8160457e810445c798c2844a3eb5f4dc"
+    },
+    {
+      "Start": "188499fc93574d8cb70159a3edd3eb0e",
+      "End": "b178ffec3d9e492aa9b8bdfaee121d65",
+      "Id": "dc1e9c923566478e87b84bcadb98d728"
+    },
+    {
+      "Start": "200efc98a6324d6d9069acb0a9edb94b",
+      "End": "9bfcf3f83bcb44f98e37b6a1bce54b69",
+      "Id": "3d6cfbbf26a644968b9f7bafafcfaa3b"
+    },
+    {
+      "Start": "1705969459ca48448de165c99e9e93bb",
+      "End": "995a794612b94f7f9645ea8b77a0e99f",
+      "Id": "70888c9c948a4bbe924e638e23fa7f14"
+    },
+    {
+      "Start": "bdbfcf861a4742a49d6481635a92b394",
+      "End": "76028f71e42e40cc86d23f73e331c778",
+      "Id": "67d0dda695434bc489e993b007ecd14a"
+    },
+    {
+      "Start": "1e55dafc058d4555813847ab068f00d2",
+      "End": "d78c91f7a5584995b5af814b206be43e",
+      "Id": "80c04bb17a294c498f106c0ffb75274d"
+    },
+    {
+      "Start": "831f7c14b35d4d80bb9a3fa233868832",
+      "End": "1cfaef06d2724a94a2c1550c2103779d",
+      "Id": "9da6b32f7a614da28f59afdbdc949ea6"
+    },
+    {
+      "Start": "ef92ca3b06d84426948a6cac40d06d36",
+      "End": "57ebf568b8b44e548c4299c959641670",
+      "Id": "fc2f117f4f6340dab60b5ab238f98537"
+    },
+    {
+      "Start": "cdea0600fc71445892d2bfd2d7a51b88",
+      "End": "d13d0e8d1aec425ea7a9d13c4af04a15",
+      "Id": "8b51e8c88d224c20a1ace36d56f6a993"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.0.7460",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Vista preliminar en segundo plano",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "9014cbbf961c4f89a0902a0510eeacd2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -168.43861166156489,
+        "Y": 641.75600224284
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File From Path",
+        "Id": "04657f212d9f4285b610e006fc8dbdfb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 352.39769349672662,
+        "Y": 642.56634321702461
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.ImportExcel",
+        "Id": "5b74eb33d918458ca0cb5c192003650c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 773.5,
+        "Y": 294.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "c80c344fe4a2495d81e763f04ebbf469",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 637.33619340964628,
+        "Y": 356.53443266440047
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Transpose",
+        "Id": "00ec3bf3f9ec4a609fd890bd2ed4d2e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1110.0828470917106,
+        "Y": 334.5053094813577
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "2b802fc9c3e143d7be2e7ccea9e025bb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1473.6534352160002,
+        "Y": 338.91850790580492
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Parameter.CreateSharedParameterForAllCategories",
+        "Id": "26516fd55a894061971422f9d25366a3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1932.0395062715661,
+        "Y": 539.09601797013659
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "d7d8d8eb726f428e883dceacd65e809b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1480.745803807012,
+        "Y": 585.47444982457932
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Parameter Type",
+        "Id": "0c508539d0e44d36b89c12b358c28952",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1471.4282549224667,
+        "Y": 671.16869525964057
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select BuiltIn Parameter Group",
+        "Id": "9c37a7770f074e03b567590b91028da3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1446.0144026709402,
+        "Y": 759.7072772972175
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "77d6cbc421584da19793e61356140d92",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1541.1113981927817,
+        "Y": 848.24585933479455
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Parameter.CreateSharedParameterForAllCategories",
+        "Id": "880ac9f6de0940f6864e1d15cc1cfbc5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2052.5844630946804,
+        "Y": 1224.8533876969657
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select BuiltIn Parameter Group",
+        "Id": "74ac5aa0358a42e5a5a08bbeca95cadf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1568.19023918645,
+        "Y": 1453.6190454860473
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "26b1fac71d9c49bbafda4d0831ba6280",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1602.92164032252,
+        "Y": 1279.3862180134086
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Parameter Type",
+        "Id": "e7bdd28641bc43d7a2e976de0f412d3c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1593.60409143798,
+        "Y": 1365.0804634484705
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "30f51686d4b64807b0f38a8c8d1d2f90",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1663.2872347082903,
+        "Y": 1542.1576275236246
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "688a292f4cd34e86918209e3c1d3c574",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1595.8292717315064,
+        "Y": 1032.8302760946351
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Transpose",
+        "Id": "e4066e3bc99d4f1483d69df37d6bc7fa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1232.2586836072164,
+        "Y": 1028.4170776701851
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.ImportExcel",
+        "Id": "ccb169ec40e34132a83010f391b0d268",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 895.67583651551013,
+        "Y": 987.91176818882946
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "c28a098d7e54432985721b3eb334e573",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 759.51202992515618,
+        "Y": 1050.4462008532294
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "64015a77ecc6472888d877e0c4c7a274",
+        "Title": "TRAER EL EXCEL",
+        "Nodes": [
+          "9014cbbf961c4f89a0902a0510eeacd2",
+          "04657f212d9f4285b610e006fc8dbdfb"
+        ],
+        "Left": -178.43861166156489,
+        "Top": 588.75600224284,
+        "Width": 650.83630515829145,
+        "Height": 146.81034097418456,
+        "FontSize": 36.0,
+        "InitialTop": 641.75600224284,
+        "InitialHeight": 145.81034097418456,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "c930a3f172604c60b9b8dee402156935",
+        "Title": "IMPORTAR LA HOJA EXCEL",
+        "Nodes": [
+          "5b74eb33d918458ca0cb5c192003650c",
+          "c80c344fe4a2495d81e763f04ebbf469"
+        ],
+        "Left": 627.33619340964628,
+        "Top": 198.0,
+        "Width": 386.16380659035372,
+        "Height": 267.0,
+        "FontSize": 36.0,
+        "InitialTop": 294.0,
+        "InitialHeight": 207.53443266440047,
+        "TextblockHeight": 86.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "912c6d2069094eeab1fd46d8726a7bbb",
+        "Title": "TRANSPUESTA ",
+        "Nodes": [
+          "00ec3bf3f9ec4a609fd890bd2ed4d2e6",
+          "2b802fc9c3e143d7be2e7ccea9e025bb"
+        ],
+        "Left": 1100.0828470917106,
+        "Top": 281.5053094813577,
+        "Width": 474.57058812428954,
+        "Height": 150.41319842444722,
+        "FontSize": 36.0,
+        "InitialTop": 334.5053094813577,
+        "InitialHeight": 149.41319842444722,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "f53f899abcfb4c99bb788170339192e9",
+        "Title": "Datos de parametros",
+        "Nodes": [
+          "d7d8d8eb726f428e883dceacd65e809b",
+          "0c508539d0e44d36b89c12b358c28952",
+          "9c37a7770f074e03b567590b91028da3",
+          "77d6cbc421584da19793e61356140d92"
+        ],
+        "Left": 1436.0144026709402,
+        "Top": 489.47444982457932,
+        "Width": 281.0,
+        "Height": 426.77140951021522,
+        "FontSize": 36.0,
+        "InitialTop": 585.47444982457932,
+        "InitialHeight": 407.77140951021522,
+        "TextblockHeight": 86.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "3a8043e1c9554356ba601d1e96dc65d6",
+        "Title": "Datos de parametros",
+        "Nodes": [
+          "26b1fac71d9c49bbafda4d0831ba6280",
+          "e7bdd28641bc43d7a2e976de0f412d3c",
+          "74ac5aa0358a42e5a5a08bbeca95cadf",
+          "30f51686d4b64807b0f38a8c8d1d2f90"
+        ],
+        "Left": 1558.19023918645,
+        "Top": 1183.3862180134086,
+        "Width": 281.0,
+        "Height": 426.771409510216,
+        "FontSize": 36.0,
+        "InitialTop": 1279.3862180134086,
+        "InitialHeight": 407.771409510216,
+        "TextblockHeight": 86.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "21ac05348df445d18b832b3d4559a887",
+        "Title": "TRANSPUESTA ",
+        "Nodes": [
+          "e4066e3bc99d4f1483d69df37d6bc7fa",
+          "688a292f4cd34e86918209e3c1d3c574"
+        ],
+        "Left": 1222.2586836072164,
+        "Top": 975.41707767018511,
+        "Width": 474.57058812429,
+        "Height": 150.41319842445,
+        "FontSize": 36.0,
+        "InitialTop": 1028.4170776701851,
+        "InitialHeight": 149.41319842445,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "7a20058f6635459a999b295e248a42b8",
+        "Title": "IMPORTAR LA HOJA EXCEL",
+        "Nodes": [
+          "ccb169ec40e34132a83010f391b0d268",
+          "c28a098d7e54432985721b3eb334e573"
+        ],
+        "Left": 749.51202992515618,
+        "Top": 891.91176818882946,
+        "Width": 386.16380659035394,
+        "Height": 267.0,
+        "FontSize": 36.0,
+        "InitialTop": 987.91176818882946,
+        "InitialHeight": 207.5344326643999,
+        "TextblockHeight": 86.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -419.07138050190213,
+    "Y": -364.77007971491793,
+    "Zoom": 0.88016924488338244
+  }
+}
